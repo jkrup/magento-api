@@ -65,6 +65,18 @@ var protos = {
     modifiers: {
       //customerData: ensureArray
     }
+  },
+  /**
+   Logs user into Magento app
+   */
+  login: {
+    mandatory: 'storeId,email,password'
+  },
+  /**
+    Checks if user is still logged in based on the session key
+  */
+  is_logged_in: {
+    mandatory: 'storeId,sessionId'
   }
 };
 
