@@ -4,7 +4,7 @@ This wrapper lets you talk to Magento via SOAP.
 
 ## Installation
 
-`npm install magento`
+`npm install git+ssh://git@bitbucket.org/icecom/magentoapi.git`
 
 ## Usage
 
