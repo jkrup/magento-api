@@ -77,7 +77,9 @@ function Magento(config) {
   }
 
   this.config = magentoConfig;
-  this.client = xmlrpc.createClient(this.config);
+  this.client = this.config.port === 443
+    ? xmlrpc.createSecureClient(this.config)
+    : xmlrpc.createClient(this.config);
   this.queue = [];
   this.queue.running = 0;
   this.queue.parallelLimit = this.config.parallelLimit;
