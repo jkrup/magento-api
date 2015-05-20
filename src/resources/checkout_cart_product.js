@@ -27,7 +27,14 @@ var protos = {
       products: ensureArray
     }
   },
-
+  /**
+   Allows you to add one more more products to the shopping cart (quote)
+   In addition, if a cart has not be created previously, it will create one 
+   and then add products to it
+  */
+  addCreate: {
+    mandatory: 'storeId,products,quoteId,sessionId'
+  },
   /**
     Allows you to retrieve the list of products in the shopping cart (quote).
   */
