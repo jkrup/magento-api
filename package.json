@@ -8,6 +8,10 @@
     {
       "name": "Tim Marshall",
       "email": "timothyjmarshall@gmail.com"
+    },
+    {
+      "name": "Ian Graham",
+      "email": "ian.graham@ice.com"
     }
   ],
   "engines": {
@@ -23,6 +27,6 @@
     "api",
     "xml"
   ],
-  "repository": "git://github.com/MadisonReed/magentoapi",
+  "repository": "git://bitbucket.org/icecom//magentoapi",
   "license": "MIT"
 }
