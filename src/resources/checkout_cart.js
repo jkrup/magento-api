@@ -48,7 +48,15 @@ var protos = {
     mandatory: 'quoteId',
     optional: 'storeView,agreements'
   },
-
+  /**
+   Allows you to create an order from a shopping cart (quote).
+   Allows for passing payment data to get around a "Credit Card number mismatch error" when creating
+   orders with the Mageneto API
+   */
+  orderCustom: {
+    mandatory: 'quoteId,payment',
+    optional: 'storeView,agreements'
+  },
   /**
     Allows you to retrieve total prices for a shopping cart (quote).
   */
