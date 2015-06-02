@@ -77,7 +77,7 @@ function Magento(config) {
   }
 
   this.config = magentoConfig;
-  this.client = this.config.port === 443
+  this.client = this.config.port == 443
     ? xmlrpc.createSecureClient(this.config)
     : xmlrpc.createClient(this.config);
   this.queue = [];
