@@ -42,6 +42,26 @@ var protos = {
         return data;
       } */
     }
+  },
+  /**
+   *  saveOrder method for paypal express checkout
+   */
+  saveOrder: {
+      mandatory: 'store,quoteId,sessionId,paymentData'
+  },
+  /**
+   * Place order for paypal express payment
+   */
+  paypalExpressPlaceOrder: {
+      mandatory: 'store,quoteId,sessionId,token,payerId,paypalData'
+  },
+  /**
+   * Paypal Express IPN endpoint
+   *
+   * ipnData should be the post body of the paypal IPN post request
+   */
+  paypalIpn: {
+      mandatory: 'ipnData'
   }
 };
 
