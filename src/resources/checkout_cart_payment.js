@@ -44,12 +44,6 @@ var protos = {
     }
   },
   /**
-   *  saveOrder method for paypal express checkout
-   */
-  saveOrder: {
-      mandatory: 'store,quoteId,sessionId,paymentData'
-  },
-  /**
    * Place order for paypal express payment
    */
   paypalExpressPlaceOrder: {
