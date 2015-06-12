@@ -56,6 +56,12 @@ var protos = {
    */
   paypalIpn: {
       mandatory: 'ipnData'
+  },
+  affirmPaymentsPlaceOrder:{
+    mandatory: 'store,quoteId,sessionId,token'
+  },
+  affirmPaymentsSaveOrder: {
+      mandatory: 'store,quoteId,sessionId,paymentData'
   }
 };
 
