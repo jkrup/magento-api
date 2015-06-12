@@ -42,7 +42,7 @@ var protos = {
         return data;
       } */
     }
-  }  },
+  },
   /**
    * Place order for paypal express payment
    */
