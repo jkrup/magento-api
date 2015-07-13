@@ -152,15 +152,36 @@ Magento.prototype.processQueue = function() {
   return this;
 };
 
-Magento.prototype.methodApply = function(method, callArr, callback) {
+Magento.prototype.methodApply = function(method, callArr, callback, retried) {
   var self = this;
 
   this.client.methodCall('call', callArr, function(err) {
-    --self.queue.running;
-    self.processQueue();
+    if (!retried) {
+      --self.queue.running;
+      self.processQueue();
+    }
 
     if (err) {
-      callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
+      // handle XML-RPC session timeout
+      if (err.faultCode === 5 && !retried) {
+        console.warn('***** Detected session timeout at Magento XML-RPC level. Trying to re-login');
+
+        self.login(function(err, sessionId) {
+          if (err) {
+            console.warn('***** Session re-login unsuccessful.', err);
+            callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
+            return;
+          }
+
+          console.log('***** Session re-login successful.');
+
+          arguments.push(true);
+          self.methodApply.apply(self, arguments);
+        });
+      } else {
+        callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
+      }
+
       return;
     }
 
