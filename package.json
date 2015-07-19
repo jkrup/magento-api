@@ -2,7 +2,7 @@
   "name": "magento-api",
   "author": "Ian Graham <ian.graham@ice.com>",
   "description": "Magento SOAP API wrapper for Node.js",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "./src/magento",
   "contributors": [
     {
