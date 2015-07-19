@@ -175,8 +175,9 @@ Magento.prototype.methodApply = function(method, callArr, callback, retried) {
 
           console.log('***** Session re-login successful.');
 
-          arguments.push(true);
-          self.methodApply.apply(self, arguments);
+          var newArgs = Array.prototype.slice.call(arguments);
+          newArgs.push(true);
+          self.methodApply.apply(self, newArgs);
         });
       } else {
         callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
