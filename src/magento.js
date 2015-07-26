@@ -154,7 +154,7 @@ Magento.prototype.processQueue = function() {
 
 Magento.prototype.methodApply = function(method, callArr, callback, retried) {
   var self = this;
-
+  var retryArgs = slice.call(arguments);
   this.client.methodCall('call', callArr, function(err) {
     if (!retried) {
       --self.queue.running;
@@ -173,11 +173,18 @@ Magento.prototype.methodApply = function(method, callArr, callback, retried) {
             return;
           }
 
-          console.log('***** Session re-login successful.');
-
-          var newArgs = Array.prototype.slice.call(arguments);
-          newArgs.push(true);
-          self.methodApply.apply(self, newArgs);
+          try {
+            console.log('***** Session re-login successful.');
+            retryArgs.push(true);
+            self.methodApply.apply(self, retryArgs);
+          }
+          catch (ex) {
+            console.log('***** Error trying to retry function call *****');
+            console.log('Message:   %s', ex.message);
+            console.log('Exception: %j', ex);
+            console.log('Args: %j', retryArgs);
+            throw ex;
+          }
         });
       } else {
         callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
