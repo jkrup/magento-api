@@ -55,7 +55,7 @@ var protos = {
    */
   orderCustom: {
     mandatory: 'quoteId,payment',
-    optional: 'storeView,agreements'
+    optional: 'ipAddress,storeView,agreements'
   },
   /**
     Allows you to retrieve total prices for a shopping cart (quote).
