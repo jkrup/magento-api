@@ -33,7 +33,8 @@ var protos = {
    and then add products to it
   */
   addCreate: {
-    mandatory: 'storeId,products,quoteId,sessionId'
+    mandatory: 'storeId,products,quoteId,sessionId',
+    optional: 'ipAddress'
   },
   /**
     Allows you to retrieve the list of products in the shopping cart (quote).
