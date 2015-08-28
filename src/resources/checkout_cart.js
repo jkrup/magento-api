@@ -31,7 +31,10 @@ var protos = {
     mandatory: 'quoteId',
     optional: 'storeView'
   },
-
+  mergeQuotes: {
+    mandatory: 'quoteIdTo,quoteIdFrom',
+    optional: 'storeView'
+  },
   /**
     Allows you to retrieve the website license agreement for the quote according to the website (store).
   */
