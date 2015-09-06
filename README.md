@@ -9,7 +9,7 @@ This wrapper lets you talk to Magento via SOAP.
 ## Usage
 
 ```js
-var MagentoAPI = require('magento');
+var MagentoAPI = require('magento-api');
 var magento = new MagentoAPI({
   host: 'your.host',
   port: 80,

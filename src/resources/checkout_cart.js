@@ -31,7 +31,19 @@ var protos = {
     mandatory: 'quoteId',
     optional: 'storeView'
   },
+  /**
+    Allows you to retrieve full information about the shopping cart (quote)
+    for PayPal, which requires the setting of a reserved order ID.
+  */
+  infoPaypal: {
+    mandatory: 'quoteId',
+    optional: 'storeView'
+  },
 
+  mergeQuotes: {
+    mandatory: 'quoteIdTo,quoteIdFrom',
+    optional: 'storeView'
+  },
   /**
     Allows you to retrieve the website license agreement for the quote according to the website (store).
   */
@@ -48,7 +60,15 @@ var protos = {
     mandatory: 'quoteId',
     optional: 'storeView,agreements'
   },
-
+  /**
+   Allows you to create an order from a shopping cart (quote).
+   Allows for passing payment data to get around a "Credit Card number mismatch error" when creating
+   orders with the Mageneto API
+   */
+  orderCustom: {
+    mandatory: 'quoteId,payment',
+    optional: 'ipAddress,sessionId,storeView,agreements'
+  },
   /**
     Allows you to retrieve total prices for a shopping cart (quote).
   */

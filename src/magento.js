@@ -77,7 +77,7 @@ function Magento(config) {
   }
 
   this.config = magentoConfig;
-  this.client = this.config.port === 443
+  this.client = this.config.port == 443
     ? xmlrpc.createSecureClient(this.config)
     : xmlrpc.createClient(this.config);
   this.queue = [];
@@ -152,15 +152,44 @@ Magento.prototype.processQueue = function() {
   return this;
 };
 
-Magento.prototype.methodApply = function(method, callArr, callback) {
+Magento.prototype.methodApply = function(method, callArr, callback, retried) {
   var self = this;
-
+  var retryArgs = slice.call(arguments);
   this.client.methodCall('call', callArr, function(err) {
-    --self.queue.running;
-    self.processQueue();
+    if (!retried) {
+      --self.queue.running;
+      self.processQueue();
+    }
 
     if (err) {
-      callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
+      // handle XML-RPC session timeout
+      if (err.faultCode === 5 && !retried) {
+        console.warn('***** Detected session timeout at Magento XML-RPC level. Trying to re-login');
+
+        self.login(function(err, sessionId) {
+          if (err) {
+            console.warn('***** Session re-login unsuccessful.', err);
+            callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
+            return;
+          }
+
+          try {
+            console.log('***** Session re-login successful.');
+            retryArgs.push(true);
+            self.methodApply.apply(self, retryArgs);
+          }
+          catch (ex) {
+            console.log('***** Error trying to retry function call *****');
+            console.log('Message:   %s', ex.message);
+            console.log('Exception: %j', ex);
+            console.log('Args: %j', retryArgs);
+            throw ex;
+          }
+        });
+      } else {
+        callback(new MagentoError(err.faultString ? err.faultString : 'An error occurred while calling ' + method, err));
+      }
+
       return;
     }
 

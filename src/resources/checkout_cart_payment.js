@@ -42,6 +42,26 @@ var protos = {
         return data;
       } */
     }
+  },
+  /**
+   * Place order for paypal express payment
+   */
+  paypalExpressPlaceOrder: {
+      mandatory: 'store,quoteId,sessionId,token,payerId,paypalData'
+  },
+  /**
+   * Paypal Express IPN endpoint
+   *
+   * ipnData should be the post body of the paypal IPN post request
+   */
+  paypalIpn: {
+      mandatory: 'ipnData'
+  },
+  affirmPaymentsPlaceOrder:{
+    mandatory: 'store,quoteId,sessionId,token'
+  },
+  affirmPaymentsSaveOrder: {
+      mandatory: 'store,quoteId,sessionId,paymentData'
   }
 };
 
