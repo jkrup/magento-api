@@ -44,10 +44,23 @@ var protos = {
     }
   },
   /**
+   * Save order for paypal express
+   */
+   paypalExpressSaveOrder: {
+    mandatory: 'store,quoteId,sessionId,returnUrl,cancelUrl'
+   },
+   /**
+    * Return from paypal
+    */
+  paypalExpressReturnFromPaypal: {
+    mandatory: 'store,quoteId,sessionId,token,payerId'
+  },
+  /**
    * Place order for paypal express payment
    */
   paypalExpressPlaceOrder: {
-      mandatory: 'store,quoteId,sessionId,token,payerId,paypalData'
+      mandatory: 'store,quoteId,sessionId',
+      optional: 'token,payerId,paypalData'
   },
   /**
    * Paypal Express IPN endpoint
