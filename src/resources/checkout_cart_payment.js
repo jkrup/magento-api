@@ -43,6 +43,25 @@ var protos = {
       } */
     }
   },
+
+  /**
+    Allows you to set a payment method for a shopping cart (quote).
+  */
+  methodPaypal: {
+    mandatory: 'quoteId,paymentData',
+    optional: 'store',
+    modifiers: {
+      // to do: verify all array'ized
+      /* paymentData: function(data) {
+        // if data is not an array, wrap it in an array
+        if (!Array.isArray(data)) {
+          return [ data ];
+        }
+
+        return data;
+      } */
+    }
+  },
   /**
    * Save order for paypal express
    */
@@ -53,7 +72,8 @@ var protos = {
     * Return from paypal
     */
   paypalExpressReturnFromPaypal: {
-    mandatory: 'store,quoteId,sessionId,token,payerId'
+    mandatory: 'store,quoteId,sessionId,token,payerId',
+    optional: 'paypalData'
   },
   /**
    * Place order for paypal express payment

@@ -39,6 +39,14 @@ var protos = {
     mandatory: 'quoteId',
     optional: 'storeView'
   },
+  /**
+    Allows you to retrieve shipping options for a user when
+    the address is selected in PayPal.
+  */
+  shippingOptions: {
+    mandatory: 'quoteId,address',
+    optional: 'storeView'
+  },
 
   mergeQuotes: {
     mandatory: 'quoteIdTo,quoteIdFrom',
