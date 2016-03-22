@@ -78,6 +78,9 @@ var protos = {
   */
   is_logged_in: {
     mandatory: 'storeId,sessionId'
+  },
+  login_social: {
+    mandatory: 'storeId,websiteId,email,accessToken,socialId,socialSite'
   }
 };
 
