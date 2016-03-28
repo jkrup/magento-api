@@ -70,13 +70,17 @@ var protos = {
    Logs user into Magento app
    */
   login: {
-    mandatory: 'storeId,email,password'
+    mandatory: 'storeId,email,password',
+    optional: 'quoteId'
   },
   /**
     Checks if user is still logged in based on the session key
   */
   is_logged_in: {
     mandatory: 'storeId,sessionId'
+  },
+  login_social: {
+    mandatory: 'storeId,websiteId,email,accessToken,socialId,socialSite'
   }
 };
 

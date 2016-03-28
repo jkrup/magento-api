@@ -39,7 +39,8 @@ var resources = {
   salesOrderCreditMemo: './resources/sales_order_credit_memo.js',
   salesOrderInvoice: './resources/sales_order_invoice.js',
   salesOrderShipment: './resources/sales_order_shipment.js',
-  store: './resources/store.js'
+  store: './resources/store.js',
+  uniquecoupons: './resources/uniquecoupons.js'
 };
 var mandatory = {};
 var configDefaults = {
