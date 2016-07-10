@@ -37,6 +37,12 @@ var protos = {
     optional: 'ipAddress,customerId'
   },
   /**
+   Allows you to remove one product from the shopping cart (quote)
+  */
+  remove_custom: {
+    mandatory: 'quoteId,productId'
+  },
+  /**
     Allows you to retrieve the list of products in the shopping cart (quote).
   */
   list: {
